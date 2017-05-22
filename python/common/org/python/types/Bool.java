@@ -100,6 +100,8 @@ public class Bool extends org.python.types.Object {
             return new org.python.types.Bool((((org.python.types.Bool) this).value ? 1 : 0) <= ((org.python.types.Int) other).value);
         } else if (other instanceof org.python.types.Bool) {
             return new org.python.types.Bool((((org.python.types.Bool) this).value ? 1 : 0) <= (((org.python.types.Bool) other).value ? 1 : 0));
+        } else if (other instanceof org.python.types.Type) {
+            throw new org.python.exceptions.TypeError("unorderable types: bool() <= type()");
         }
         return org.python.types.NotImplementedType.NOT_IMPLEMENTED;
     }
@@ -228,7 +230,8 @@ public class Bool extends org.python.types.Object {
         } catch (org.python.exceptions.TypeError ae) {
             throw new org.python.exceptions.TypeError("unsupported operand type(s) for //: 'bool' and '" + other.typeName() + "'");
         }
-        // throw new org.python.exceptions.NotImplementedError("bool.__truediv__() has not been implemented.");
+
+        //throw new org.python.exceptions.NotImplementedError("bool.__truediv__() has not been implemented.");
     }
 
     @org.python.Method(
